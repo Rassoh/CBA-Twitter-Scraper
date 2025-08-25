@@ -1,10 +1,10 @@
 import os, time, requests
 from dotenv import load_dotenv
-from urllib.parse import quote 
+from urllib.parse import quote, urlencode 
 
 load_dotenv()
 BEARER_TOKEN = os.getenv("BEARER_TOKEN")
-HEADERS = {"Authorization": f"Bearer {BEARER}"}
+HEADERS = {"Authorization": f"Bearer {BEARER_TOKEN}"}
 
 BASE = "https://api.twitter.com/2/"
 
@@ -27,5 +27,5 @@ def paginate(url, params, limit = 1000):
         if not next_token:
             break
         time.sleep(1.1)
-    
-    
+        
+

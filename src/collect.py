@@ -1,5 +1,5 @@
 import pandas as pd 
-from client import paginate
+from src.client import paginate
 
 TWEET_FIELDS = [
     "id", "text", "created_at","public_metrics","entities","context_annotations",
@@ -21,7 +21,7 @@ def collect_user_tweets(username="CommBank", max_results=100, total=500):
         users.update(users_page)
         for t in page.get("data", []):
             a = users_page.get(t["author_id"], {})
-            row = {**t, **{f"user_{k}": v for k, v in author.items()}}
+            row = {**t, **{f"user_{k}": v for k, v in a.items()}}
             rows.append({
                 "tweet_id": row.get("id"),
                 "text": row.get("text"),
